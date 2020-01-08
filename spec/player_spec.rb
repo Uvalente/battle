@@ -15,9 +15,4 @@ describe Player do
   it 'reduces the HP' do
     expect { player1.receive_damage }.to change { player1.hp }.by(-10)
   end
-
-  it 'can attack someone' do
-    player1.attack(player2)
-    expect(player2.hp).to eq 90
-  end
 end
