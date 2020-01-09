@@ -13,6 +13,7 @@ describe Player do
   end
 
   it 'reduces the HP' do
+    allow(Kernel).to receive(:rand).and_return(10)
     expect { player1.receive_damage }.to change { player1.hp }.by(-10)
   end
 end
