@@ -1,8 +1,8 @@
 require 'game'
 
 describe Game do
-let(:player1) { double(:player1) }
-let(:player2) { double(:player2) }
+let(:player1) { double(:player1, name: 'Player 1') }
+let(:player2) { double(:player2, name: 'Player 2') }
 subject { described_class.new(player1, player2) }
 
   describe '#player1' do
@@ -17,7 +17,7 @@ subject { described_class.new(player1, player2) }
   end
 
   describe '#player2' do
-    it 'return the first player' do
+    it 'return the second player' do
       expect(subject.player2).to eq player2
     end
 
@@ -31,6 +31,22 @@ subject { described_class.new(player1, player2) }
     it 'should attack someone' do
       expect(player2).to receive(:receive_damage)
       subject.attack(subject.player2)
+    end
+  end
+
+  describe '#turn' do
+    it 'first turn is player 1' do
+      expect(subject.turn).to eq 'Player 1'
+    end
+
+    it 'second turn is for player 2' do
+      subject.change_turn
+      expect(subject.turn).to eq 'Player 2'
+    end
+
+    it 'third turn is for player 1' do
+      2.times { subject.change_turn }
+      expect(subject.turn).to eq 'Player 1'
     end
   end
 end

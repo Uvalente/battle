@@ -3,5 +3,13 @@
   <h1><%= @game.player1.name  + " Vs " + @game.player2.name %></h1>
   <h2><%= @game.player1.name %>: <%= @game.player1.hp %>HP</h2>
   <h2><%= @game.player2.name %>: <%= @game.player2.hp %>HP</h2>
+  <% if @game.turn_number == 0 %>
+    <h2>What do you want to do?</h2>
+  <% elsif @game.turn == @game.player2.name %>
+    <h2><%= @game.player1.name %> attacked <%= @game.player2.name %></h2>
+  <% else %>
+    <h2><%= @game.player2.name %> attacked <%= @game.player1.name %></h2>
+  <% end %>
+  <h2><%= @game.turn %>'s turn</h2>
   <a href='/attack'>Attack</a>
 </html>
