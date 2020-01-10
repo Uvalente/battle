@@ -7,6 +7,7 @@ class Game
     @player1 = player1
     @player2 = player2
     @turn = 0
+    @loser = nil
   end
 
   def attack(player)
@@ -24,5 +25,23 @@ class Game
 
   def change_turn
     @turn += 1
+  end
+
+  def game_over?
+    dead?(@player1)
+    dead?(@player2)
+    !!@loser
+  end
+
+  def dead?(player)
+    @loser = player if player.hp <= 0
+  end
+
+  def loser
+    @loser
+  end
+
+  def winner
+    loser == @player1 ? @player2 : @player1
   end
 end
