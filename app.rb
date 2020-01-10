@@ -21,12 +21,17 @@ class Battle < Sinatra::Base
   end
 
   get '/play' do
+    redirect '/gameover' if @game.game_over?
     erb(:play)
   end
 
   get '/attack' do
-    @game.turn == @game.player1.name ? @game.attack(@game.player2) : @game.attack(@game.player1)
-    redirect '/gameover' if @game.game_over?
+    @game.turn == @game.player1 ? @game.attack(@game.player2) : @game.attack(@game.player1)
+    redirect '/play'
+  end
+
+  get '/paralyze' do
+    @game.turn == @game.player1 ? @game.paralyze(@game.player2) : @game.paralyze(@game.player1)
     redirect '/play'
   end
 

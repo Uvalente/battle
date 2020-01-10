@@ -38,17 +38,17 @@ describe Game do
 
   describe '#turn' do
     it 'first turn is player 1' do
-      expect(subject.turn).to eq 'Player 1'
+      expect(subject.turn).to eq player1
     end
 
     it 'second turn is for player 2' do
       subject.change_turn
-      expect(subject.turn).to eq 'Player 2'
+      expect(subject.turn).to eq player2
     end
 
     it 'third turn is for player 1' do
       2.times { subject.change_turn }
-      expect(subject.turn).to eq 'Player 1'
+      expect(subject.turn).to eq player1
     end
   end
 

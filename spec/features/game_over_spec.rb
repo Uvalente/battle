@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 feature 'shows winner' do
   scenario 'Player 1 wins' do
     sign_in_and_play
@@ -6,7 +8,7 @@ feature 'shows winner' do
     expect(page).to have_content('Player 1 wins')
   end
 
-  scenario 'Player 1 wins' do
+  scenario 'Player 2 wins' do
     sign_in_and_play
     allow(Kernel).to receive(:rand) { 0 }
     click_link 'Attack'
